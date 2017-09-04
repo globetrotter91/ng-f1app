@@ -33,7 +33,7 @@ You can directly run the index.html file on firefox.
 
 Chrome and safari give an exception if the file request are made from cross origin without SSL.
 
-Therefore To run on chrome. Folloe the following steps 
+Therefore To run on chrome. Follow the following steps 
 
     1. Install NodeJS
     2. Open your favorite terminal emulator
