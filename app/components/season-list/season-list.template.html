@@ -1,0 +1,45 @@
+<div class="container" ng-controller="SeasonListController as slCtrl">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <h2>
+                F1 Seasons Summary 
+                <span class="pull-right text-warning" ng-show="slCtrl.loading">
+                    <i class="fa fa-circle-o-notch fa-pulse fa-fw"></i> Loading
+                </span>
+            </h2>
+            <p>Click on a season so see the races</p>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="list-group">
+                <a
+                    href="javascript:void(0)"
+                    class="list-group-item"
+                    ng-repeat="season in slCtrl.seasons"
+                    ng-click="slCtrl.seasonClicked(season)">
+                    <h4 class="list-group-item-heading">
+                        <i class="fa fa-trophy"></i> {{season.DriverStandings[0].Driver.givenName+" "+season.DriverStandings[0].Driver.familyName }}
+                        <span class="pull-right text-success">{{season.DriverStandings[0].Constructors[0].name}}</span>
+                    </h4>
+                    <p class="list-group-item-text"><i class="fa fa-calendar"></i>  {{season.season}}</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12" ng-show="!slCtr.loading && slCtrl.seasonRaces.length>0">
+            <h3 className="pull-right">Season: {{slCtrl.selectedSeason}}</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Round Race</th>
+                        <th>Winner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="race in slCtrl.seasonRaces" ng-class="{'bg-success': (slCtrl.selectedSeasonChampionId === race.Results[0].Driver.driverId)}">
+                        <td>Round {{race.round}}: {{race.raceName}}</td>
+                        <td>{{ race.Results[0].Driver.givenName+" "+race.Results[0].Driver.familyName }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
